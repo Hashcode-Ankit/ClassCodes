@@ -13,7 +13,7 @@
 //         this.NumOfWheels = 4
 //     }
 //     AgeOfWheels(){
-//         return this.howOld()
+//         return this.howOld() +" "+ this.CarName
 //     }
 // }
 
@@ -21,13 +21,17 @@
 
 // console.log(w.AgeOfWheels())
 
+
 http = require('http')
 
-let server = function(req,res) {
-    res.writeHead(503)
-    res.end("This is node js server")
+let server = function(req,res){
+    res.writeHead(404)
+    res.end("Hello from Ankit")
 }
 
 let s1 = http.createServer(server)
-s1.listen(8000)
-console.log("server is listening")
+
+s1.listen(8080)
+
+
+console.log("server is listening ")
