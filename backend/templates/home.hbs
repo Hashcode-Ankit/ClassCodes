@@ -1,0 +1,24 @@
+<style>
+    input,button{
+        margin-top: 10px;
+    }
+</style>
+<div>
+    <h2>
+        {{#each data}}
+       The car name are:  {{this}}
+       <br>
+       {{/each}}
+      <div style ="margin-left:40%">
+       <form  method="post" action="/" >
+       <label for="name">Enter your name</label>
+        <input type="text" name = "myName">
+        <br>
+        <label for="pass"> Enter your password</label>
+        <input type="password" name = "password">
+  <br>
+        <button>submit</button>
+       </form>
+       </div>
+    </h2>
+</div>
