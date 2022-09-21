@@ -1,0 +1,161 @@
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+
+.bg-img {
+    background: url("https://media0.giphy.com/media/Q34Q46x7bUUKJfbn0s/giphy-downsized-large.gif");
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.bg-img:after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.174);
+}
+
+.content {
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 999;
+    text-align: center;
+    padding: 60px 32px;
+    width: 370px;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.133);
+    border: 1px solid #fff;
+    backdrop-filter: blur(3px);
+    box-shadow: 0 0 6px 0 rgba(29, 29, 29, 0.203);
+}
+
+.content header {
+    color: white;
+    font-size: 32px;
+    font-weight: 600;
+    margin: 0 0 35px 0;
+}
+
+.section {
+    position: relative;
+    height: 45px;
+    width: 100%;
+    display: flex;
+    background: rgba(255, 255, 255, 0.94);
+    border-radius: 20px;
+}
+
+.section span {
+    color: #222;
+    width: 40px;
+    line-height: 45px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.section input {
+    height: 100%;
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #222;
+    font-size: 18px;
+    border-radius: 20px;
+}
+
+.space {
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.show {
+    position: absolute;
+    right: 25px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #222;
+    display: none;
+    cursor: pointer;
+}
+
+.pass:valid~.show {
+    display: block;
+}
+
+.section input[type="submit"] {
+    background: #D052F6;
+    border: 1px solid #D052F6;
+    color: white;
+    font-size: 18px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .3s ease;
+}
+
+.section input[type="submit"]:hover {
+    background: #D052F690;
+    border: 1px solid #D052F690;
+}
+
+.login {
+    color: white;
+    margin: 20px 0;
+}
+</style>
+<div class="bg-img">
+    <div class="content">
+    <header>Login Form</header>
+    <form method ="post" action="/">
+        <div class="section">
+        <span class="fa-solid fa-user"></span>
+        <input type="text" name="email" required placeholder="Enter Email" />
+        </div>
+        <div class="section space">
+        <span class="fa-solid fa-lock"></span>
+        <input
+            type="password"
+            name ="pass"
+            class="pass"
+            required
+            placeholder="Password"
+        />
+        <span class="show">SHOW</span>
+        </div>
+        <div class="section">
+        <input type="submit" value="LOGIN" />
+        <p>If not register  <a href="/register">Register</a></p>
+        </div>
+    </form>
+    </div>
+</div>
+
+<script>
+    const pass_field = document.querySelector(".pass");
+const showBtn = document.querySelector(".show");
+showBtn.addEventListener("click", function () {
+  if (pass_field.type === "password") {
+    pass_field.type = "text";
+    showBtn.textContent = "HIDE";
+    showBtn.style.color = "#D052F6";
+  } else {
+    pass_field.type = "password";
+    showBtn.textContent = "SHOW";
+    showBtn.style.color = "#222";
+  }
+});
+</script>
