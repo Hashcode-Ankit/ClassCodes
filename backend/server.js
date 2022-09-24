@@ -6,7 +6,7 @@ const { Console } = require("console")
 
 let app = express()
 
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false })) 
 app.get("/",async function(req,res){
     let arr = ["Fortuner","Toyota","Tata","Mahindra"]
    res.render(path.join(__dirname,"/templates/home.hbs"),{data : arr})
