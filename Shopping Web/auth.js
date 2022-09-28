@@ -1,27 +1,16 @@
 const fs = require('fs')
-
+const mongo = require("/Users/Learn/Desktop/Class Codes/Shopping Web/mongo.js")
 let login = false;
+let cartArray = []
 function isAuth(email,pass){
-    data = require("/Users/Learn/Desktop/Class Codes/Shopping Web/user.json")
-    if(data[email]==pass){
-        login = true;
-        return true;
-    }else {
-        return false;
-    }
+    return  mongo.getUser(email,pass)
 }
-function registerUser(email,pass){
-    data = require("/Users/Learn/Desktop/Shopping Web/user.json")
-    data[email] = pass;
-    obj = JSON.stringify(data)
-    fs.writeFile("/Users/Learn/Desktop/Shopping Web/user.json",obj,function(){
-        console.log("data is entered")
-    })
+function registerUser(data){
+    mongo.registerUser(data)
 }
 
 function getShopingData(){
    data1 = require("/Users/Learn/Desktop/Class Codes/Shopping Web/d.json")
-//    console.log(data1)
    return data1.data
 }
 function isUserLoggedIn(){
@@ -31,5 +20,8 @@ function isUserLoggedIn(){
 function logOut(){
     login = false;
 }
+function giveCartItems(){
+    return cartArray
+}
 // getShopingData()
-module.exports ={isAuth,registerUser,getShopingData,isUserLoggedIn,logOut}
+module.exports ={isAuth,registerUser,getShopingData,isUserLoggedIn,logOut,giveCartItems}

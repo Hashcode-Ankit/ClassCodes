@@ -10,20 +10,20 @@ app.get('/',function(req,res){
 
 })
 app.post('/',function(req,res){
-    if(auth.isAuth(req.body.email,req.body.pass)){
-       console.log("user is Authorised")
-       data = auth.getShopingData()
-    res.render(path.join(__dirname,"/template/shopping.hbs"),{data:data})
-
-      }else{
-          console.log("user is not authorized")
-      }
+    auth.isAuth(req.body.email,req.body.password).then(()=>{
+        console.log("user is authorised")
+        data = auth.getShopingData()
+        res.render(path.join(__dirname,"/template/shopping.hbs"),{data : data})
+    }).catch(()=>{
+        console.log("not authorised")
+        res.render(path.join(__dirname,"/template/404.hbs"))
+    })
 })
 app.get('/register',function(req,res){
     res.render(path.join(__dirname,"/template/register.hbs"))
 })
 app.post('/register',function(req,res){
-    auth.registerUser(req.body.email,req.body.pass)
+    auth.registerUser(req.body)
     res.render(path.join(__dirname,"/template/login.hbs"))
 })
 
@@ -39,7 +39,14 @@ app.get('/shoping',function(req,res){
 app.get('/logout',function(req,res){
     auth.logOut();
     res.render(path.join(__dirname,"/template/login.hbs"))
-
+})
+app.get('/addItem/:id',function(req,res){
+    req.Params
+    
+})
+app.get('/cart',function(req,res){
+   cartItems = auth.giveCartItems();
+   res.render(path.join(__dirname,"/template/cart.hbs"),{data:cartItems})
 })
 app.listen(8080)
 console.log("Server Started")
