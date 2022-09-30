@@ -123,25 +123,6 @@
   display:none;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @media (max-width: 700px) {
   .item.search input {
     display: none;
@@ -212,10 +193,9 @@ button{
     <i class="fa fa-search" style="color: black;width:30px"></i>
       </div>
   </div>
-  
-  
-  <a href="" class="  item">
-
+  <div>
+    <a href = "/shoping">shoping</a>
+    <div>
     <div class="group">
       <div class="detail">
         Account
@@ -223,10 +203,8 @@ button{
       </div>
     </div>
   </a>
-
-  <a href="" class="item">
     <div class="group">
-    <a href="/cart"> <i class="fa fa-shopping-cart" style="font-size:36px"></i></a>
+    <a href="/cart"><i class="fa fa-shopping-cart" style="font-size:36px"></i></a>
     </div>
   </a>
 </nav>
@@ -239,9 +217,9 @@ button{
         <h3>{{this.name}}</h3>
       </div>
       <div class="description">
-       {{ this.slug}}
+       {{this.slug}}
       </div>
-      <a href='/addItem'> Add +</a>
+      <button><a href="/addItem/{{this.id}}">Add+</a></button>
     </article>
     {{/each}}
   </div>

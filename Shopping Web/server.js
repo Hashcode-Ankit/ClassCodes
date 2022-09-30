@@ -7,15 +7,13 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 app.get('/',function(req,res){
     res.render(path.join(__dirname,"/template/login.hbs"))
-
 })
 app.post('/',function(req,res){
-    auth.isAuth(req.body.email,req.body.password).then(()=>{
+    auth.isAuth(req.body.email,req.body.password).then((data)=>{
         console.log("user is authorised")
-        data = auth.getShopingData()
-        res.render(path.join(__dirname,"/template/shopping.hbs"),{data : data})
-    }).catch(()=>{
-        console.log("not authorised")
+        res.redirect('/shoping')
+    }).catch((err)=>{
+        console.log("not authorised",err)
         res.render(path.join(__dirname,"/template/404.hbs"))
     })
 })
@@ -30,7 +28,6 @@ app.post('/register',function(req,res){
 app.get('/shoping',function(req,res){ 
     if(auth.isUserLoggedIn()==true){
         data = auth.getShopingData()
-        console.log(auth.isUserLoggedIn)
     res.render(path.join(__dirname,"/template/shopping.hbs"),{data : data})
     }else{
         res.render(path.join(__dirname,"/template/404.hbs"))
@@ -38,15 +35,26 @@ app.get('/shoping',function(req,res){
 })
 app.get('/logout',function(req,res){
     auth.logOut();
-    res.render(path.join(__dirname,"/template/login.hbs"))
+    res.redirect("/")
 })
 app.get('/addItem/:id',function(req,res){
-    req.Params
-    
+    let idOfProduct = req.params.id
+    // console.log(idOfProduct)
+    auth.addItem(idOfProduct)
+    res.redirect('/shoping')
+
+})
+app.get('/remove/:id',function(req,res){
+    let idOfProduct = req.params.id
+    auth.removeItem(idOfProduct)
+    res.redirect('/cart')
+
 })
 app.get('/cart',function(req,res){
-   cartItems = auth.giveCartItems();
-   res.render(path.join(__dirname,"/template/cart.hbs"),{data:cartItems})
+    data = auth.getCartItems()
+    price = auth.price()
+    // console.log(data)
+   res.render(path.join(__dirname,'/template/cart.hbs'),{cartItems: data,price:price})
 })
 app.listen(8080)
 console.log("Server Started")
